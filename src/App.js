@@ -23,7 +23,7 @@ const App = () => {
   }, []);
 
   const graphData = nodeData && edgeData ? formatData(nodeData, edgeData, seedTxId, 500) : null;
-  console.log(graphData);
+  // console.log(graphData);
 
   return (
     <div className="App">
@@ -34,35 +34,3 @@ const App = () => {
 };
 
 export default App;
-
-// d3.csv(ellipticNodes).then((data) => {
-//   for (let i = 0; i < 5; i++) {
-//     const node = data[i];
-//     usedTxIds.add(node.txId);
-
-//     let label = node.class;
-//     if (label === 'unknown') {
-//       label = 'Unknown';
-//     } else if (label === '1') {
-//       label = 'Illicit';
-//     } else {
-//       label = 'Licit';
-//     }
-
-//     output.nodes.push({
-//       id: node.txId,
-//       name: `${node.txId} - ${label}`,
-//     });
-//   }
-// });
-
-// d3.csv(ellipticEdges).then((data) => {
-//   data.forEach((edge) => {
-//     if (usedTxIds.has(edge.txId1) || usedTxIds.has(edge.txId2)) {
-//       output.links.push({
-//         source: edge.txId1,
-//         target: edge.txId2,
-//       });
-//     }
-//   });
-// });

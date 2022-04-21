@@ -4,11 +4,11 @@ Returns an object that looks like
   "nodes": [ 
       { 
         "id": "id1",
-        "name": "name1",
+        "class": "class1",
       },
       { 
         "id": "id2",
-        "name": "name2",
+        "class": "class2",
       },
       ...
   ],
@@ -24,10 +24,9 @@ Returns an object that looks like
 The nodes come from ./datasets/elliptic_txs_classes.csv which has columns txId, class
 The edges come from ./datasets/elliptic_txs_edgelist.csv which has columns txId1, txId2
 */
-export const formatData = (nodeData, edgeData, seedTxId, maxNodes = 1000) => {
+export const formatData = (nodeData, edgeData, seedTxId, maxNodes = 500) => {
   const output = { nodes: [], links: [] };
 
-  // create a map of txId to node using nodeData
   const txIdToClass = new Map();
   nodeData.forEach((node) => {
     txIdToClass.set(node.txId, node.class);
@@ -65,29 +64,50 @@ export const formatData = (nodeData, edgeData, seedTxId, maxNodes = 1000) => {
           if (!visited.has(neighbor)) {
             visited.add(neighbor);
             queue.push(neighbor);
-            output.links.push({ source: current, target: neighbor });
+            output.links.push({
+              source: current,
+              target: neighbor,
+              name: `Transaction Link<br>${current} → ${neighbor}`,
+            });
           }
         });
       }
     }
   }
 
-  output.nodes = Array.from(visited).map((id) => ({
-    id,
-    val: adjacencyList[id].length,
-    color: getNodeColor(txIdToClass.get(id)),
-  }));
+  output.nodes = Array.from(visited).map((id) => {
+    const classColor = getNodeColor(txIdToClass.get(id));
+    const classStr = getClassString(txIdToClass.get(id));
+    return {
+      id,
+      val: adjacencyList[id].length,
+      color: classColor,
+      degree: adjacencyList[id].length,
+      name: `Transaction ID: ${id}<br>Class: ${classStr}<br>Degree: ${adjacencyList[id].length}`,
+    };
+  });
 
   return output;
 };
 
-const getNodeColor = (className) => {
-  switch (className) {
+const getNodeColor = (classNum) => {
+  switch (classNum) {
     case '1':
       return '#ff0000';
     case '2':
       return '#228B22';
     default:
       return '#3a3b3c';
+  }
+};
+
+const getClassString = (classNum) => {
+  switch (classNum) {
+    case '1':
+      return 'Illicit';
+    case '2':
+      return 'Licit';
+    default:
+      return 'Unknown';
   }
 };

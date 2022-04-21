@@ -11,11 +11,12 @@ const Graph3D = ({ graphData }) => {
     bloomPass.radius = 1;
     bloomPass.threshold = 0.1;
     fgRef.current.postProcessingComposer().addPass(bloomPass);
+    
   }, []);
   
   const zoomInNode = useCallback(
     (node) => {
-      const distance = 800;
+      const distance = 400;
       const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
 
       fgRef.current.cameraPosition({ x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }, node, 1000);
@@ -33,6 +34,10 @@ const Graph3D = ({ graphData }) => {
       //   fgRef.current.zoomToFit(800);
       // }}
       onNodeClick={zoomInNode}
+      nodeLabel={(node) => node.name}
+      linkLabel={(link) => link.name}
+      linkDirectionalArrowLength={5}
+      linkDirectionalArrowRelPos={1}
     />
   );
 };
