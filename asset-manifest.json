@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/dva-btc-dataviz/static/css/main.d24c8768.css",
+    "main.js": "/dva-btc-dataviz/static/js/main.08ab9db6.js",
+    "static/js/787.3478c709.chunk.js": "/dva-btc-dataviz/static/js/787.3478c709.chunk.js",
+    "static/media/elliptic_txs_edgelist.csv": "/dva-btc-dataviz/static/media/elliptic_txs_edgelist.e2737c46679e220f25bb.csv",
+    "static/media/elliptic_txs_classes.csv": "/dva-btc-dataviz/static/media/elliptic_txs_classes.fc2d7836fc2dd4604dc1.csv",
+    "index.html": "/dva-btc-dataviz/index.html",
+    "main.d24c8768.css.map": "/dva-btc-dataviz/static/css/main.d24c8768.css.map",
+    "main.08ab9db6.js.map": "/dva-btc-dataviz/static/js/main.08ab9db6.js.map",
+    "787.3478c709.chunk.js.map": "/dva-btc-dataviz/static/js/787.3478c709.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d24c8768.css",
+    "static/js/main.08ab9db6.js"
+  ]
+}
