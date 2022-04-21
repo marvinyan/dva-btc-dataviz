@@ -1,4 +1,4 @@
-/* 
+/*
 Returns an object that looks like 
 {
   "nodes": [ 
@@ -24,7 +24,7 @@ Returns an object that looks like
 The nodes come from ./datasets/elliptic_txs_classes.csv which has columns txId, class
 The edges come from ./datasets/elliptic_txs_edgelist.csv which has columns txId1, txId2
 */
-export const formatData = (data, seedTxId, maxNodes=1000) => {
+export const formatData = (data, seedTxId, maxNodes = 1000) => {
   const output = { nodes: [], links: [] };
 
   const adjacencyList = {};
@@ -49,7 +49,7 @@ export const formatData = (data, seedTxId, maxNodes=1000) => {
   const visited = new Set();
   visited.add(seedTxId);
 
-  while (visited.length < maxNodes) {
+  while (visited.size < maxNodes) {
     const current = queue.shift();
     if (current) {
       const neighbors = adjacencyList[current];
