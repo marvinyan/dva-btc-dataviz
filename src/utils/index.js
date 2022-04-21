@@ -24,11 +24,17 @@ Returns an object that looks like
 The nodes come from ./datasets/elliptic_txs_classes.csv which has columns txId, class
 The edges come from ./datasets/elliptic_txs_edgelist.csv which has columns txId1, txId2
 */
-export const formatData = (data, seedTxId, maxNodes = 1000) => {
+export const formatData = (nodeData, edgeData, seedTxId, maxNodes = 1000) => {
   const output = { nodes: [], links: [] };
 
+  // create a map of txId to node using nodeData
+  const txIdToClass = new Map();
+  nodeData.forEach((node) => {
+    txIdToClass.set(node.txId, node.class);
+  });
+
   const adjacencyList = {};
-  data.forEach((edge) => {
+  edgeData.forEach((edge) => {
     const { txId1, txId2 } = edge;
 
     if (!adjacencyList[txId1]) {
@@ -66,6 +72,22 @@ export const formatData = (data, seedTxId, maxNodes = 1000) => {
     }
   }
 
-  output.nodes = Array.from(visited).map((id) => ({ id }));
+  output.nodes = Array.from(visited).map((id) => ({
+    id,
+    val: adjacencyList[id].length,
+    color: getNodeColor(txIdToClass.get(id)),
+  }));
+
   return output;
+};
+
+const getNodeColor = (className) => {
+  switch (className) {
+    case '1':
+      return '#ff0000';
+    case '2':
+      return '#228B22';
+    default:
+      return '#3a3b3c';
+  }
 };
