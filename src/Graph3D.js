@@ -2,6 +2,8 @@ import { useRef, useEffect, useCallback } from 'react';
 import { ForceGraph3D } from 'react-force-graph';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 
+const distance = 400;
+
 const Graph3D = ({ graphData }) => {
   const fgRef = useRef();
 
@@ -11,12 +13,10 @@ const Graph3D = ({ graphData }) => {
     bloomPass.radius = 1;
     bloomPass.threshold = 0.1;
     fgRef.current.postProcessingComposer().addPass(bloomPass);
-    
   }, []);
-  
+
   const zoomInNode = useCallback(
     (node) => {
-      const distance = 400;
       const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
 
       fgRef.current.cameraPosition({ x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }, node, 1000);
@@ -27,6 +27,7 @@ const Graph3D = ({ graphData }) => {
   return (
     <ForceGraph3D
       ref={fgRef}
+      // backgroundColor="#282c34"
       graphData={graphData}
       // linkWidth={2}
       cooldownTicks={100}

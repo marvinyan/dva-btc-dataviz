@@ -80,7 +80,7 @@ export const formatData = (nodeData, edgeData, seedTxId, maxNodes = 500) => {
     const classStr = getClassString(txIdToClass.get(id));
     return {
       id,
-      val: adjacencyList[id].length,
+      val: Math.sqrt(adjacencyList[id].length),
       color: classColor,
       degree: adjacencyList[id].length,
       name: `Transaction ID: ${id}<br>Class: ${classStr}<br>Degree: ${adjacencyList[id].length}`,
