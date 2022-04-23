@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { ForceGraph2D } from 'react-force-graph';
 import { CORRECT, INCORRECT } from './constants';
 
@@ -12,7 +11,6 @@ const Graph2D = ({ graphData }) => {
       if (node.prediction === CORRECT) {
         ctx.fillStyle = 'cyan';
       } else {
-        console.log(node)
         ctx.fillStyle = 'fuchsia';
       }
       ctx.fill();
@@ -21,7 +19,6 @@ const Graph2D = ({ graphData }) => {
 
   return (
     <ForceGraph2D
-      // ref={fgRef}
       backgroundColor="#eee8d5"
       graphData={graphData}
       nodeLabel={(node) => node.name}

@@ -1,4 +1,4 @@
-import { CORRECT, INCORRECT, NO_PREDICTION, UNKNOWN } from "../constants";
+import { CORRECT, INCORRECT, NO_PREDICTION, UNKNOWN } from '../constants';
 
 /*
 Returns an object that looks like 
@@ -35,7 +35,7 @@ export const formatData = (nodeData, edgeData, seedTxId, maxNodes = 500) => {
   const txIdToPrediction = new Map(); // values: 'Correct', 'No Prediction', 'Incorrect'
 
   nodeData.forEach((node) => {
-    const predictedClass = node.predicted_vals === "None" ? UNKNOWN : node.predicted_vals;
+    const predictedClass = node.predicted_vals === 'None' ? UNKNOWN : node.predicted_vals;
     txIdToClass.set(node.txId, predictedClass);
     if (predictedClass === UNKNOWN && node.class === UNKNOWN) {
       txIdToPrediction.set(node.txId, NO_PREDICTION);
@@ -76,6 +76,7 @@ export const formatData = (nodeData, edgeData, seedTxId, maxNodes = 500) => {
           if (!visited.has(neighbor)) {
             visited.add(neighbor);
             queue.push(neighbor);
+
             output.links.push({
               source: current,
               target: neighbor,
@@ -95,7 +96,9 @@ export const formatData = (nodeData, edgeData, seedTxId, maxNodes = 500) => {
       val: Math.sqrt(adjacencyList[id].length),
       color: classColor,
       degree: adjacencyList[id].length,
-      name: `Transaction ID: ${id}<br>Class: ${classStr}<br>Degree: ${adjacencyList[id].length}<br>Prediction: ${txIdToPrediction.get(id)}`,
+      name: `Transaction ID: ${id}<br>Class: ${classStr}<br>Degree: ${
+        adjacencyList[id].length
+      }<br>Prediction: ${txIdToPrediction.get(id)}`,
       prediction: txIdToPrediction.get(id),
     };
   });

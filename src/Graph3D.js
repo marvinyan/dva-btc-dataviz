@@ -1,6 +1,7 @@
 import { useRef, useEffect, useCallback } from 'react';
 import { ForceGraph3D } from 'react-force-graph';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+import { INCORRECT } from './constants';
 
 const distance = 400;
 
@@ -24,16 +25,18 @@ const Graph3D = ({ graphData }) => {
     [fgRef]
   );
 
+  const recoloredGraphData = structuredClone(graphData);
+  recoloredGraphData.nodes.forEach((node) => {
+    if (node.prediction === INCORRECT) {
+      node.color = 'fuchsia';
+    }
+  });
+
   return (
     <ForceGraph3D
       ref={fgRef}
-      // backgroundColor="#282c34"
-      graphData={graphData}
-      // linkWidth={2}
+      graphData={recoloredGraphData}
       cooldownTicks={100}
-      // onEngineStop={() => {
-      //   fgRef.current.zoomToFit(800);
-      // }}
       onNodeClick={zoomInNode}
       nodeLabel={(node) => node.name}
       linkLabel={(link) => link.name}

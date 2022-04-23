@@ -13,18 +13,9 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .root-select-label {
-  margin-left: 0.5em;
-  margin-right: 0.5em;
+  margin-left: 2em;
+  margin-right: 0.3em;
   color: #61dafb;
 }
 
@@ -32,8 +23,6 @@
   display: none;
 }
 
-/* This class is a navbar that contains 2 buttons (3D and 2D) and a dropdown. Center all 
-contents in the middle of the navbar.*/
 .tabs {
   background-color: #282c34;
   color: #61dafa;
@@ -46,8 +35,8 @@ contents in the middle of the navbar.*/
 .tablinks {
   background-color: #282c34;
   color: #61dafa;
-  margin-right: 0.5em;
-  margin-left: 0.5em;
+  margin-right: 0.25em;
+  margin-left: 0.25em;
   padding-left: 0.5em;
   padding-right: 0.5em;
   outline: none;
@@ -79,4 +68,33 @@ contents in the middle of the navbar.*/
 .team {
   margin-top: 0.5em;
   font-size: 1em;
+}
+
+.legend-label {
+  margin-left: 2em;
+  text-decoration: underline dotted;
+}
+
+.legend-tooltip {
+  z-index: 2;
+}
+
+.red-text {
+  color: #ff0000;
+}
+
+.green-text {
+  color: #228b22;
+}
+
+.gray-text {
+  color: #3a3b3c;
+}
+
+.fuchsia-text {
+  color: fuchsia;
+}
+
+.cyan-text {
+  color: cyan;
 }
