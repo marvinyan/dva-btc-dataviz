@@ -8,8 +8,6 @@ import Graph3D from './Graph3D';
 import Graph2D from './Graph2D';
 
 const App = () => {
-  // call formatData and save the result in a variable
-  // use the useEffect hook to call the formatData function
   const [nodeData, setNodeData] = useState();
   const [edgeData, setEdgeData] = useState();
   const [seedTxId, setSeedTxId] = useState('355110272');
@@ -24,7 +22,6 @@ const App = () => {
   }, []);
 
   const graphData = nodeData && edgeData ? formatData(nodeData, edgeData, seedTxId, 500) : null;
-  // console.log(graphData);
 
   return <div className="App">{graphData ? showGraphs(graphData, setSeedTxId) : null}</div>;
 };
