@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import { csv } from 'd3';
 import './App.css';
 import ellipticNodes from './datasets/elliptic_txs_classes.csv';
