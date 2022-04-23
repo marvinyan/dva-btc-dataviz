@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/dva-btc-dataviz/static/css/main.a92783fd.css",
-    "main.js": "/dva-btc-dataviz/static/js/main.238cf69a.js",
+    "main.js": "/dva-btc-dataviz/static/js/main.903dc38f.js",
     "static/js/787.3478c709.chunk.js": "/dva-btc-dataviz/static/js/787.3478c709.chunk.js",
     "static/media/df_classes_with_predicted_vals.csv": "/dva-btc-dataviz/static/media/df_classes_with_predicted_vals.265f8fcf96f5b878bc49.csv",
     "static/media/elliptic_txs_edgelist.csv": "/dva-btc-dataviz/static/media/elliptic_txs_edgelist.e2737c46679e220f25bb.csv",
     "static/media/HelveticaNeue-Regular.otf": "/dva-btc-dataviz/static/media/HelveticaNeue-Regular.f0cf2111420398857473.otf",
     "index.html": "/dva-btc-dataviz/index.html",
     "main.a92783fd.css.map": "/dva-btc-dataviz/static/css/main.a92783fd.css.map",
-    "main.238cf69a.js.map": "/dva-btc-dataviz/static/js/main.238cf69a.js.map",
+    "main.903dc38f.js.map": "/dva-btc-dataviz/static/js/main.903dc38f.js.map",
     "787.3478c709.chunk.js.map": "/dva-btc-dataviz/static/js/787.3478c709.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a92783fd.css",
-    "static/js/main.238cf69a.js"
+    "static/js/main.903dc38f.js"
   ]
 }
