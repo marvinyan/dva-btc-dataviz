@@ -1,3 +1,5 @@
+import { CORRECT, INCORRECT, NO_PREDICTION, UNKNOWN } from "../constants";
+
 /*
 Returns an object that looks like 
 {
@@ -5,10 +7,12 @@ Returns an object that looks like
       { 
         "id": "id1",
         "class": "class1",
+        "prediction": "Correct",
       },
       { 
         "id": "id2",
         "class": "class2",
+        "prediction": "No Prediction"
       },
       ...
   ],
@@ -21,15 +25,23 @@ Returns an object that looks like
   ]
 }
 
-The nodes come from ./datasets/elliptic_txs_classes.csv which has columns txId, class
+The nodes come from ./datasets/df_classes_with_predicted_vals.csv which has columns rowId,txId,class,predicted_vals
 The edges come from ./datasets/elliptic_txs_edgelist.csv which has columns txId1, txId2
 */
 export const formatData = (nodeData, edgeData, seedTxId, maxNodes = 500) => {
   const output = { nodes: [], links: [] };
 
-  const txIdToClass = new Map();
+  const txIdToClass = new Map(); // values are from predicted_vals
+  const txIdToPrediction = new Map(); // values: 'Correct', 'No Prediction', 'Incorrect'
+
   nodeData.forEach((node) => {
-    txIdToClass.set(node.txId, node.class);
+    const predictedClass = node.predicted_vals === "None" ? UNKNOWN : node.predicted_vals;
+    txIdToClass.set(node.txId, predictedClass);
+    if (predictedClass === UNKNOWN && node.class === UNKNOWN) {
+      txIdToPrediction.set(node.txId, NO_PREDICTION);
+    } else {
+      txIdToPrediction.set(node.txId, predictedClass === node.class ? CORRECT : INCORRECT);
+    }
   });
 
   const adjacencyList = {};
@@ -83,7 +95,8 @@ export const formatData = (nodeData, edgeData, seedTxId, maxNodes = 500) => {
       val: Math.sqrt(adjacencyList[id].length),
       color: classColor,
       degree: adjacencyList[id].length,
-      name: `Transaction ID: ${id}<br>Class: ${classStr}<br>Degree: ${adjacencyList[id].length}`,
+      name: `Transaction ID: ${id}<br>Class: ${classStr}<br>Degree: ${adjacencyList[id].length}<br>Prediction: ${txIdToPrediction.get(id)}`,
+      prediction: txIdToPrediction.get(id),
     };
   });
 

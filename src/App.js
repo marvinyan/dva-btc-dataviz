@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { csv } from 'd3';
 import './App.css';
-import ellipticNodes from './datasets/elliptic_txs_classes.csv';
+import predictedNodes from './datasets/df_classes_with_predicted_vals.csv';
 import ellipticEdges from './datasets/elliptic_txs_edgelist.csv';
 import { formatData } from './utils';
 import Graph3D from './Graph3D';
@@ -13,7 +13,7 @@ const App = () => {
   const [seedTxId, setSeedTxId] = useState('355110272');
 
   useEffect(() => {
-    csv(ellipticNodes).then((data) => {
+    csv(predictedNodes).then((data) => {
       setNodeData(data);
     });
     csv(ellipticEdges).then((data) => {
