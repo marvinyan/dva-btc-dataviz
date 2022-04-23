@@ -26,47 +26,66 @@ const App = () => {
   const graphData = nodeData && edgeData ? formatData(nodeData, edgeData, seedTxId, 500) : null;
   // console.log(graphData);
 
+  return <div className="App">{graphData ? showGraphs(graphData, setSeedTxId) : null}</div>;
+};
+
+const showGraphs = (graphData, setSeedTxId) => {
   return (
-    <div className="App">
-      <header className="App-header"></header>
-      {graphData ? showGraphs(graphData) : null}
+    <div className="container">
+      <div className="navbar">
+        <div className="proj-info">
+          <div className="title">Identifying Illicit Behavior in the Blockchain</div>
+          <div className="team">Team 126</div>
+        </div>
+        <div className="tabs">
+          <button className="tablinks" onClick={() => showGraph('3D')}>
+            3D
+          </button>
+          <button className="tablinks" onClick={() => showGraph('2D')} style={{ border: 'none' }}>
+            2D
+          </button>
+          <label htmlFor="seedTxId" className="root-select-label">
+            Root Transaction ID#
+          </label>
+          <select
+            className="seedTxId"
+            onChange={(e) => {
+              setSeedTxId(e.target.value);
+            }}
+          >
+            <option value="355110272">355110272</option>
+            <option value="102570">102570</option>
+            <option value="565334">565334</option>
+          </select>
+        </div>
+      </div>
+      <div className="graphs">
+        <div className="graph-3d">
+          <Graph3D graphData={graphData} />
+        </div>
+        <div className="graph-2d">
+          <Graph2D graphData={graphData} />
+        </div>
+      </div>
     </div>
   );
 };
 
-const showGraphs = (graphData) => {
-  return (
-    <Fragment>
-      <div className="tabs">
-        <button className="tablinks" onClick={() => showGraph('2D')}>
-          2D
-        </button>
-        <button className="tablinks" onClick={() => showGraph('3D')}>
-          3D
-        </button>
-      </div>
-      <div className="graphs">
-        <div className="graph2D" >
-          <Graph2D graphData={graphData} />
-        </div>
-        <div className="graph3D">
-          <Graph3D graphData={graphData} />
-        </div>
-      </div>
-    </Fragment>
-  );
-};
-
 const showGraph = (graphType) => {
-  const graph2D = document.getElementsByClassName('graph2D');
-  const graph3D = document.getElementsByClassName('graph3D');
+  const graph2D = document.getElementsByClassName('graph-2d');
+  const graph3D = document.getElementsByClassName('graph-3d');
+  const buttons = document.getElementsByClassName('tablinks');
 
   if (graphType === '3D') {
-    graph3D[0].style.display = 'block';
     graph2D[0].style.display = 'none';
+    graph3D[0].style.display = 'block';
+    buttons[0].style.border = 'solid';
+    buttons[1].style.border = 'none';
   } else {
-    graph3D[0].style.display = 'none';
     graph2D[0].style.display = 'block';
+    graph3D[0].style.display = 'none';
+    buttons[0].style.border = 'none';
+    buttons[1].style.border = 'solid';
   }
 };
 

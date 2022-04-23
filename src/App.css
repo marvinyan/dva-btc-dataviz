@@ -1,17 +1,12 @@
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('./fonts/HelveticaNeue-Regular.otf') format('opentype');
+}
+
 .App {
   text-align: center;
   background-color: #282c34;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  font-family: 'HelveticaNeue';
 }
 
 .App-link {
@@ -25,4 +20,63 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.root-select-label {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  color: #61dafb;
+}
+
+.graph-2d {
+  display: none;
+}
+
+/* This class is a navbar that contains 2 buttons (3D and 2D) and a dropdown. Center all 
+contents in the middle of the navbar.*/
+.tabs {
+  background-color: #282c34;
+  color: #61dafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+}
+
+.tablinks {
+  background-color: #282c34;
+  color: #61dafa;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  outline: none;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  border-color: #61dafa;
+  border-width: 1px;
+  border: solid;
+}
+
+.navbar {
+  background-color: #282c34;
+  padding: 0.5em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.proj-info {
+  font-size: 1em;
+  font-weight: bold;
+  color: #61dafa;
+  padding-top: 0.5em;
+}
+
+.team {
+  margin-top: 0.5em;
+  font-size: 1em;
 }
