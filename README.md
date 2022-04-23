@@ -1,11 +1,14 @@
 # Identifying Illicit Behavior in Bitcoin's Blockchain
 Check out the app at https://marvinyan.github.io/dva-btc-dataviz/
 
-## Running the code locally
-1. Install project dependencies: `yarn install`
-2. Run the web app: `yarn start`
-3. A browser tab should automatically open. If not, go to `localhost:3000/dva-btc-dataviz`.
+## Installation
+Install project dependencies: `yarn install`. Alternatively, you may use `npm install` if you don't have yarn.
 
+## Execution
+1. Run the web app: `yarn start`. Alternatively, you may use `npm run start` if you don't have yarn.
+2. A browser tab should automatically open. If not, enter `localhost:3000/dva-btc-dataviz` in your browser's address bar.
+
+# Description
 ## Subset creation
 A subset of the dataset must be generated as there are far too many nodes and edges to display efficiently in a web browser. By creating an adjacency list based on the edges in the large dataset, we can quickly ascertain all destination nodes that can be reached from any given source node. The adjacency list is traversed using breadth-first search to construct a tree where the root can be any point of interest. Once a specified number of nodes and edges have been collected, the tree is complete and can be visualized with minimal performance impact.
 
